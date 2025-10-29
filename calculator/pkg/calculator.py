@@ -9,22 +9,27 @@ class Calculator:
             "/": lambda a, b: a / b,
         }
         self.precedence = {
-            "+": 3,
+            "+": 1,
             "-": 1,
             "*": 2,
             "/": 2,
         }
     def evaluate(self, expression):
+        print(f'Evaluating: {expression}')
         if not expression or expression.isspace():
             return None
         tokens = expression.strip().split()
-        return self._evaluate_infix(tokens)
+        print(f'Tokens: {tokens}')
+        result = self._evaluate_infix(tokens)
+        print(f'Result: {result}')
+        return result
 
     def _evaluate_infix(self, tokens):
         values = []
         operators = []
 
         for token in tokens:
+            print(f'Token: {token}')
             if token in self.operators:
                 while (
                     operators
